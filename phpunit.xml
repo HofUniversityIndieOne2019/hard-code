@@ -1,0 +1,25 @@
+<phpunit
+        backupGlobals="true"
+        colors="true"
+        convertErrorsToExceptions="true"
+        convertWarningsToExceptions="true"
+        forceCoversAnnotation="false"
+        processIsolation="false"
+        stopOnError="false"
+        stopOnFailure="false"
+        stopOnIncomplete="false"
+        stopOnSkipped="false"
+        verbose="false"
+        beStrictAboutTestsThatDoNotTestAnything="false"
+>
+    <testsuites>
+        <testsuite name="Unit tests for hard-code project">
+            <directory>tests/</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">src/**/Classes/</directory>
+        </whitelist>
+    </filter>
+</phpunit>
