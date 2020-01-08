@@ -1,0 +1,25 @@
+{
+  "book": [
+    {
+      "id": 11,
+      "isbn": "AABBCC",
+      "title": "Bridge Over Greasy Kittens",
+      "blurb": "Bridge Over Greasy Kittens blurb\nBlurb #2\nBlurb #3",
+      "price": 123.45
+    },
+    {
+      "id": 12,
+      "isbn": "BBCCDD",
+      "title": "Truly, Madly, Greasy",
+      "blurb": "Truly, Madly, Greasy blurb\nBlurb #2\nBlurb #3",
+      "price": 12.99
+    },
+    {
+      "id": 13,
+      "isbn": "DDEEFF",
+      "title": "James Taylor Dreams",
+      "blurb": "James Taylor Dreams blurb\nBlurb #2\nBlurb #3",
+      "price": 345.00
+    }
+  ]
+}
