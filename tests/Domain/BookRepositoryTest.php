@@ -27,6 +27,7 @@ class BookRepositoryTest extends TestCase
             ->method('execute');
 
         $dataManager = $this->getMockBuilder(DataManager::class)
+            ->disableOriginalConstructor()
             ->onlyMethods(['executeQuery'])
             ->getMock();
         $dataManager->expects(self::once())
