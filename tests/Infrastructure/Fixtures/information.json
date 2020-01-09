@@ -1,0 +1,18 @@
+{
+  "test": [
+    {
+      "id": 11,
+      "isbn": "XXYYZZ",
+      "title": "Bridge Over Greasy Kittens",
+      "blurb": "Bridge Over Greasy Kittens blurb\nBlurb #2\nBlurb #3",
+      "price": 123.45
+    },
+    {
+      "id": 12,
+      "isbn": "CCBBAA",
+      "title": "Truly, Madly, Greasy",
+      "blurb": "Truly, Madly, Greasy blurb\nBlurb #2\nBlurb #3",
+      "price": 12.99
+    }
+  ]
+}
