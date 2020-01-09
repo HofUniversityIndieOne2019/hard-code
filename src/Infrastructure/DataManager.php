@@ -4,7 +4,23 @@ namespace OliverHader\HardCode\Infrastructure;
 
 class DataManager
 {
+    public function executeQuery(DataQuery $dataQuery): array
+    {
+        return $this->execute($dataQuery->getFrom(), $dataQuery->getWhereLikes());
+    }
+
+    /**
+     * @param string $from
+     * @param array $whereLikes
+     * @return array
+     * @deprecated Use executeQuery instead
+     */
     public function query(string $from, array $whereLikes = []): array
+    {
+        return $this->execute($from, $whereLikes);
+    }
+
+    protected function execute(string $from, array $whereLikes = []): array
     {
         $allData = $this->readData();
 

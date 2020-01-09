@@ -2,17 +2,34 @@
 declare(strict_types=1);
 namespace OliverHader\HardCode\Domain;
 
+use OliverHader\HardCode\Infrastructure\DataManager;
 use OliverHader\HardCode\Infrastructure\DataQuery;
 
 class BookRepository
 {
+    /**
+     * @var BookFactory
+     */
+    private $bookFactory;
+
+    /**
+     * @var DataManager
+     */
+    private $dataManager;
+
+    public function __construct(BookFactory $bookFactory = null, DataManager $dataManager = null)
+    {
+        $this->bookFactory = $bookFactory ?? new BookFactory();
+        $this->dataManager = $dataManager ?? new DataManager();
+    }
+
     /**
      * @return Book[]
      */
     public function findAll(): array
     {
         $query = $this->createQuery();
-        $records = $query->execute();
+        $records = $this->dataManager->executeQuery($query);
         return array_map([$this, 'createBook'], $records);
     }
 
@@ -24,7 +41,7 @@ class BookRepository
     {
         $query = $this->createQuery();
         $query->whereLike('title', $likeTitle);
-        $records = $query->execute();
+        $records = $this->dataManager->executeQuery($query);
         return array_map([$this, 'createBook'], $records);
     }
 
@@ -38,8 +55,7 @@ class BookRepository
 
     protected function createBook(array $record): Book
     {
-        $factory = new BookFactory();
-        return $factory->fromRecord($record);
+        return $this->bookFactory->fromRecord($record);
     }
 
     protected function createQuery(): DataQuery

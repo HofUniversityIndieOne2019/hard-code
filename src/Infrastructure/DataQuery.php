@@ -4,7 +4,14 @@ namespace OliverHader\HardCode\Infrastructure;
 
 class DataQuery
 {
-    private $from;
+    /**
+     * @var string
+     */
+    private $from = '';
+
+    /**
+     * @var array
+     */
     private $whereLikes = [];
 
     public function from(string $from)
@@ -17,9 +24,29 @@ class DataQuery
         $this->whereLikes[] = [$propertyName, $propertyValue];
     }
 
+    /**
+     * @return string
+     */
+    public function getFrom(): string
+    {
+        return $this->from;
+    }
+
+    /**
+     * @return array
+     */
+    public function getWhereLikes(): array
+    {
+        return $this->whereLikes;
+    }
+
+    /**
+     * @return array
+     * @deprecated Use DataManager::executeQuery directly
+     */
     public function execute(): array
     {
         $manager = new DataManager();
-        return $manager->query($this->from, $this->whereLikes);
+        return $manager->executeQuery($this);
     }
 }
