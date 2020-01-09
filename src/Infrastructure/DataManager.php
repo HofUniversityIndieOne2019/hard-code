@@ -38,7 +38,8 @@ class DataManager
         $data = array_filter(
             $data,
             function ($record) use ($whereLikes) {
-                foreach ($whereLikes as $propertyName => $propertyValue) {
+                foreach ($whereLikes as $whereLike) {
+                    [$propertyName, $propertyValue] = $whereLike;
                     if (!isset($record[$propertyName])) {
                         var_dump($record, $propertyName);
                         return false;
@@ -50,6 +51,6 @@ class DataManager
                 return true;
             }
         );
-        return $data;
+        return array_values($data);
     }
 }
