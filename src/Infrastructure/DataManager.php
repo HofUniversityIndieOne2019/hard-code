@@ -4,6 +4,16 @@ namespace OliverHader\HardCode\Infrastructure;
 
 class DataManager
 {
+    /**
+     * @var FileReader
+     */
+    private $fileReader;
+
+    public function __construct(FileReader $fileReader = null)
+    {
+        $this->fileReader = $fileReader ?? new FileReader($GLOBALS['ROOT_DIRECTORY']);
+    }
+
     public function executeQuery(DataQuery $dataQuery): array
     {
         return $this->execute($dataQuery->getFrom(), $dataQuery->getWhereLikes());
@@ -22,7 +32,7 @@ class DataManager
 
     protected function execute(string $from, array $whereLikes = []): array
     {
-        $allData = $this->readData();
+        $allData = $this->fileReader->readJson('data/data.json');
 
         $data = $allData[$from] ?? [];
         $data = array_filter(
@@ -30,6 +40,7 @@ class DataManager
             function ($record) use ($whereLikes) {
                 foreach ($whereLikes as $propertyName => $propertyValue) {
                     if (!isset($record[$propertyName])) {
+                        var_dump($record, $propertyName);
                         return false;
                     }
                     if (!preg_match('#' . $propertyValue . '#', $record[$propertyName])) {
@@ -40,12 +51,5 @@ class DataManager
             }
         );
         return $data;
-    }
-
-    protected function readData(): array
-    {
-        $dataFile = $GLOBALS['ROOT_DIRECTORY'] . '/data/data.json';
-        $rawData = file_get_contents($dataFile);
-        return json_decode($rawData, true) ?? [];
     }
 }
