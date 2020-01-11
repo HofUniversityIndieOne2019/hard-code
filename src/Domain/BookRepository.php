@@ -53,7 +53,7 @@ class BookRepository
         return $this->createBook(array_shift($record));
     }
 
-    protected function createBook(array $record): Book
+    private function createBook(array $record): Book
     {
         return $this->bookFactory->fromRecord($record);
     }

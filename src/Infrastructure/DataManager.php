@@ -30,7 +30,7 @@ class DataManager
         return $this->execute($from, $whereLikes);
     }
 
-    protected function execute(string $from, array $whereLikes = []): array
+    private function execute(string $from, array $whereLikes = []): array
     {
         $allData = $this->fileReader->readJson('data/data.json');
 
